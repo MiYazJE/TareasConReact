@@ -19,7 +19,7 @@ mongoose.connect(dbConfig.url, {useNewParser: true})
     })
 
 // Static Files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './src/public')));
 
 // Routes
 app.use('/api', require('./app/routes/api.routes.js'));

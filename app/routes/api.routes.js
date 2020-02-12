@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Tarea = require('../controllers/Tarea.controller');
+const Task = require('../controllers/Task.controller');
 
-router.get('/', (req, res) => {
-    res.json({
-        message: 'Api working...'
-    });
-})
+router.get('/', Task.findAll);
 
 module.exports = router;
