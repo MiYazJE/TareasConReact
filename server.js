@@ -11,11 +11,10 @@ app.use(express.json());
 
 // Validate DB
 const dbConfig = require('./config/dbConfig.config');
-mongoose.connect(dbConfig.url, {useNewParser: true})
+mongoose.connect(dbConfig.url, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log('*** MongoDB Working ***'))
     .catch((error) => {
-        console.log(error);
-        process.exit();
+        throw err;
     })
 
 // Static Files
