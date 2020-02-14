@@ -1,7 +1,8 @@
 import React from 'react';
 import Task from './Task';
 
-function Tasks({ tasks }) {
+function Tasks({ tasks, deleteTask }) {
+
     return (
         <div className="wrap-tasks">
             {!tasks || Object.keys(tasks).length == 0 ?
@@ -10,10 +11,7 @@ function Tasks({ tasks }) {
                 </div>
                 : tasks.map(task => {
                     return (
-                        <React.Fragment key={task._id}>
-                            <Task task={task} />
-                            <hr />
-                        </React.Fragment>
+                        <Task key={task._id} task={task} deleteTask={deleteTask} />
                     )
                 })
             }

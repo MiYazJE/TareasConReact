@@ -3,16 +3,32 @@ import Tasks from './components/Tasks';
 import Form from './components/Form';
 import './App.css';
 
-const API = 'http://localhost:3000';
 
 function App() {
 
+    const API = 'http://localhost:3000';
     const [tasks, setTasks] = useState(null);
 
     async function fetchTasks() {
         const res = await fetch(`${API}/api`);
         const tasks = await res.json();
         setTasks(tasks);
+    }
+
+    async function deleteTask(_id) {
+        const url = `${API}/api/deleteTask`;
+        const init = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(_id)
+        }
+        const request = new Request(url, init);
+        await fetch(request);
+    }
+
+    function handleDeleteTask(id) {
+        deleteTask(id);
+        fetchTasks();
     }
 
     useEffect(() => {
@@ -38,7 +54,7 @@ function App() {
     return (
         <React.Fragment>
             <Form handleForm={handleForm} />
-            <Tasks tasks={tasks} />
+            <Tasks deleteTask={handleDeleteTask} tasks={tasks} />
         </React.Fragment>
     )
 }
