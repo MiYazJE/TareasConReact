@@ -14,10 +14,13 @@ function Form({ handleForm }) {
     }
 
     return (
-        <div className="form">
-            <input ref={inputTitle} type="text" placeholder="Title..." />
-            <input ref={inputDescription} type="text" placeholder="Description..." />
-            <button onClick={handleFormSend} >Create Task</button>
+        <div className="form-wrap">
+            <div className="form">
+                <h3>Create Task</h3>
+                <input ref={inputTitle} type="text" placeholder="Title..." />
+                <textarea ref={inputDescription} type="text" placeholder="Description..." />
+                <button onClick={handleFormSend} >Create Task</button>
+            </div>
         </div>
     );
 }

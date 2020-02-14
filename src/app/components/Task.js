@@ -1,20 +1,21 @@
 import React from 'react';
+import { MdCreate } from 'react-icons/md';
+import { TiDeleteOutline } from 'react-icons/ti';
 
-function Task({ tasks }) {
+function Task({ task }) {
 
-    console.log(tasks)
+    const { title, description, _id } = task;
+
     return (
-        <div className="wrap-tasks">
-            {!tasks || Object.keys(tasks).length == 0 ? 
-                <div>
-                    <h1>No tasks to show</h1>
-                </div>
-                : tasks.map(task => (
-                    <div className="task" key={task._id}>
-                        <p className="title">{task.title}</p>
-                        <p className="description">{task.description}</p>
-                    </div>
-                ))}
+        <div key={_id} className="task">
+            <p className="title">
+                {title}
+            </p>
+            <p className="description">
+                {description}
+            </p>
+            <button className="btnEdit"><MdCreate /></button>
+            <button className="btnRemove"><TiDeleteOutline /></button>
         </div>
     );
 }

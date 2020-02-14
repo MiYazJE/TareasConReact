@@ -8,9 +8,9 @@ module.exports = {
     },
 
     create: async (req, res) => {
-        console.log(req.body)
-        if (!req.body || Object.keys(req.body).length == 0) {
-            res.send({message: 'The task is empty.'});
+
+        if (!validateBody(req.body)) {
+            res.send({ message: 'The task is empty.' });
             return;
         }
 
@@ -19,8 +19,34 @@ module.exports = {
             title,
             description
         })
+
         const data = await task.save();
         res.send(data);
+    },
+
+    delete: async (req, res) => {
+        if (!validateBody(req.body)) {
+            res.send({ message: 'The task is empty.' });
+            return;
+        }
+
+        const taskDeleted = await Task.deleteOne(req.body);
+        res.send(taskDeleted);
+    },
+
+    getId: async (req, res) => {
+        if (!req.params || !req.params.title) {
+            res.send({ message: 'Title is empty' });
+            return;
+        }
+
+        const task = await Task.findOne(req.params);
+        res.send(task);
+
     }
 
+}
+
+const validateBody = (body) => {
+    return body && Object.keys(body).length != 0;
 }

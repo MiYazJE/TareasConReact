@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Task from './components/Task';
+import Tasks from './components/Tasks';
 import Form from './components/Form';
 import './App.css';
-import { set } from "mongoose";
 
 const API = 'http://localhost:3000';
 
@@ -39,7 +38,7 @@ function App() {
     return (
         <React.Fragment>
             <Form handleForm={handleForm} />
-            <Task tasks={tasks} />
+            <Tasks tasks={tasks} />
         </React.Fragment>
     )
 }
